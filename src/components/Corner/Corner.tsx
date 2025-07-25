@@ -17,7 +17,7 @@ export const Corner = ({ position , verticalSize, horizontalSize, color }: Corne
     const hzMum = theme.frame.size[horizontalSize];
     const vtNum = theme.frame.size[verticalSize];
     const htmlColor = theme.color[color ?? 'main'];
-    const innerSize = Math.min( (vtNum + hzMum) / 2 , vtNum, hzMum);
+    const innerSize = Math.min(vtNum, hzMum);
 
    
     

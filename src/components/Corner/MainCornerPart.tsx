@@ -15,28 +15,27 @@ export const MainCornerPart = ({ width, height, color, position  , cornerSize}: 
         height : height + cornerSize,
         backgroundColor: color,
     }
-    const maxSize = Math.max(width, height);
-    const minSize = Math.min(width, height);
+    const radius = Math.max(width, height);
     switch (position) {
         case 'top-left':
             style.top = 0;
             style.left = 0;
-            style.borderTopLeftRadius = Math.max(maxSize / 2, minSize / 2);
+            style.borderTopLeftRadius = radius;
             break;
         case 'top-right':
             style.top = 0;
             style.right = 0;
-            style.borderTopRightRadius = Math.max(maxSize / 2, minSize / 2);
+            style.borderTopRightRadius = radius;
             break;
         case 'bottom-left':
             style.bottom = 0;
             style.left = 0;
-            style.borderBottomLeftRadius = Math.max(maxSize / 2, minSize / 2);
+            style.borderBottomLeftRadius = radius;
             break;
         case 'bottom-right':
             style.bottom = 0;
             style.right = 0;
-            style.borderBottomRightRadius = Math.max(maxSize / 2, minSize / 2);
+            style.borderBottomRightRadius = radius;
             break;
     }
     return (
