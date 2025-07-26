@@ -7,7 +7,8 @@ const meta = {
   title: 'FrameParts/Frame',
   component: Frame,
   parameters: {
-    // Use default layout (padded) but allow natural sizing
+    // Use fullscreen layout so Frame can take up entire viewport
+    layout: 'fullscreen',
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
@@ -89,6 +90,27 @@ export const Primary: Story = {
     topColor: 'main',
     bottomColor: 'main',
   },
+  render: (args) => (
+    <Frame {...args}>
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        color: 'white',
+        fontSize: '24px',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        zIndex: 10,
+      }}>
+        Frame Content Area
+        <br />
+        <span style={{ fontSize: '16px', opacity: 0.8 }}>
+          This content is positioned in the center of the frame
+        </span>
+      </div>
+    </Frame>
+  ),
 };
 
 export const FullFrame: Story = {
@@ -102,6 +124,27 @@ export const FullFrame: Story = {
     topColor: 'alt2',
     bottomColor: 'main',
   },
+  render: (args) => (
+    <Frame {...args}>
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        color: 'white',
+        fontSize: '24px',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        zIndex: 10,
+      }}>
+        Full Frame Layout
+        <br />
+        <span style={{ fontSize: '16px', opacity: 0.8 }}>
+          All sides with different colors
+        </span>
+      </div>
+    </Frame>
+  ),
 };
 
 export const SidebarOnly: Story = {
@@ -115,6 +158,27 @@ export const SidebarOnly: Story = {
     topColor: 'main',
     bottomColor: 'main',
   },
+  render: (args) => (
+    <Frame {...args}>
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        color: 'white',
+        fontSize: '24px',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        zIndex: 10,
+      }}>
+        Sidebar Only
+        <br />
+        <span style={{ fontSize: '16px', opacity: 0.8 }}>
+          Left sidebar without top/bottom frames
+        </span>
+      </div>
+    </Frame>
+  ),
 };
 
 export const NoFrame: Story = {
@@ -128,4 +192,25 @@ export const NoFrame: Story = {
     topColor: 'main',
     bottomColor: 'main',
   },
+  render: (args) => (
+    <Frame {...args}>
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        color: 'white',
+        fontSize: '24px',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        zIndex: 10,
+      }}>
+        No Frame
+        <br />
+        <span style={{ fontSize: '16px', opacity: 0.8 }}>
+          Just the content area without any frame elements
+        </span>
+      </div>
+    </Frame>
+  ),
 }; 

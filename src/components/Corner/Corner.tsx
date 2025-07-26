@@ -18,15 +18,34 @@ export const Corner = ({ position , verticalSize, horizontalSize, color }: Corne
     const vtNum = theme.frame.size[verticalSize];
     const htmlColor = theme.color[color ?? 'main'];
     const innerSize = Math.min(vtNum, hzMum);
+    const style : React.CSSProperties = {
+        position : 'absolute',
+        width: vtNum + innerSize,
+        height: hzMum + innerSize,
+    }
+    switch (position) {
+        case 'top-left':
+            style.left = 0;
+            style.top = 0;
+            break;
+        case 'top-right':
+            style.right = 0;
+            style.top = 0;
+            break;
+        case 'bottom-left':
+            style.left = 0;
+            style.bottom = 0;
+            break;
+        case 'bottom-right':
+            style.right = 0;
+            style.bottom = 0;
+            break;
+    }
 
    
     
     return (
-        <div style={{
-            position : 'relative',
-            width: vtNum + innerSize,
-            height: hzMum + innerSize,
-        }}>
+        <div style={style}>
             <MainCornerPart cornerSize={innerSize} width={vtNum} height={hzMum} color={htmlColor} position={position} />
             <InnerCornerPart size={innerSize} color={htmlColor} position={position} />
             
