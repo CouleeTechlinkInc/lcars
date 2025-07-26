@@ -10,6 +10,18 @@ const meta = {
     // Use fullscreen layout so Frame can take up entire viewport
     layout: 'fullscreen',
   },
+  decorators: [
+    (Story) => (
+      <div style={{
+        width: '100vw',
+        height: '100vh',
+        position: 'relative',
+        backgroundColor: '#000000',
+      }}>
+        <Story />
+      </div>
+    ),
+  ],
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
