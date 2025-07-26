@@ -1,6 +1,7 @@
 
 import type { ThemeColors, ThemeFrameSize } from "../../providers/theme/theme.types";
 import { Sidebar } from "../Sidebar/Sidebar";
+import { TopBar } from "../TopBar/TopBar";
 import { Corner } from "../Corner/Corner";
 import { useTheme } from "../../providers/theme/theme";
 
@@ -65,6 +66,28 @@ export const Frame = ({
                 position="right"
                 top={topWidth !== 'none' ? topWidthNum + topRightCornerSize : 0}
                 bottom={bottomWidth !== 'none' ? bottomWidthNum + bottomRightCornerSize : 0}
+            />
+        )}
+
+        {/* Top Bar */}
+        {topWidth !== 'none' && (
+            <TopBar
+                height={topWidth}
+                color={topColor}
+                position="top"
+                left={leftWidth !== 'none' ? leftWidthNum + topLeftCornerSize : 0}
+                right={rightWidth !== 'none' ? rightWidthNum + topRightCornerSize : 0}
+            />
+        )}
+
+        {/* Bottom Bar */}
+        {bottomWidth !== 'none' && (
+            <TopBar
+                height={bottomWidth}
+                color={bottomColor}
+                position="bottom"
+                left={leftWidth !== 'none' ? leftWidthNum + bottomLeftCornerSize : 0}
+                right={rightWidth !== 'none' ? rightWidthNum + bottomRightCornerSize : 0}
             />
         )}
 
