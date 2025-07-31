@@ -1,4 +1,4 @@
-import { useTheme } from "../../providers/theme/theme";
+import { useSemanticColor } from "../../providers/theme/useSemanticColor";
 
 export interface InnerCornerPartProps {
     size: number;
@@ -7,8 +7,7 @@ export interface InnerCornerPartProps {
 }
 
 export const InnerCornerPart = ({size, color, position }: InnerCornerPartProps) => {
-    const theme = useTheme();
-    const backgroundColor = theme.color.background;
+    const backgroundColor = useSemanticColor('background.base');
     
     const backgroundStyle : React.CSSProperties = {
         position: 'absolute',

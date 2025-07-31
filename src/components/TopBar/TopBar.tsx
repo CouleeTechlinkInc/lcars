@@ -1,5 +1,7 @@
 import { useTheme } from "../../providers/theme/theme";
 import type { ThemeColors, ThemeFrameSize } from "../../providers/theme/theme.types";
+import { useSemanticColor } from "../../providers/theme/useSemanticColor";
+
 export interface TopBarProps {
     children?: React.ReactNode;
     height?: ThemeFrameSize;
@@ -11,7 +13,10 @@ export interface TopBarProps {
 export const TopBar = ({ children , height , color , position , left , right }: TopBarProps) => {
     const theme = useTheme();
     const heightNum = theme.frame.size[height ?? 'md'];
-    const backgroundColor = theme.color[color ?? 'main'];
+    // Use semantic color with backward compatibility
+    const customColor = color ? useSemanticColor(color, 'TopBar') : null;
+    const defaultColor = useSemanticColor('frame.topbar');
+    const backgroundColor = customColor || defaultColor;
     return (
         <div style={{
             backgroundColor: backgroundColor,

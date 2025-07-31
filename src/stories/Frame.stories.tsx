@@ -1,6 +1,49 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Frame } from '../components/Frame/Frame';
+import { lcarsColors } from '../providers/theme/theme.utils';
+
+// Semantic color paths for frame components
+const semanticColorOptions = [
+  // Frame-specific semantic colors
+  'frame.primary',
+  'frame.secondary',
+  'frame.accent',
+  'frame.divider',
+  'frame.corner',
+  'frame.sidebar',
+  'frame.topbar',
+  // Action colors for interactive frames
+  'action.primary',
+  'action.secondary',
+  'action.disabled',
+  // Status colors for state indication
+  'status.info',
+  'status.success',
+  'status.warning',
+  'status.error',
+  'status.neutral',
+  // Navigation colors
+  'navigation.item',
+  'navigation.itemActive',
+  'navigation.indicator',
+  // Content colors
+  'content.primary',
+  'content.secondary',
+  // Background colors
+  'background.base',
+  'background.elevated',
+] as const;
+
+// Get all LCARS color names for the select options
+const colorOptions = [
+  '--- Semantic Colors (Recommended) ---',
+  ...semanticColorOptions,
+  '--- Legacy Colors (Deprecated) ---',
+  'main', 'alt1', 'alt2', // Legacy colors
+  '--- Appearance-based Colors (Deprecated) ---',
+  ...Object.keys(lcarsColors) // All LCARS colors
+] as const;
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -54,25 +97,25 @@ const meta = {
       control: {
         type: 'select',
       },
-      options: ['main', 'alt1', 'alt2'],
+      options: colorOptions,
     },
     rightColor: {
       control: {
         type: 'select',
       },
-      options: ['main', 'alt1', 'alt2'],
+      options: colorOptions,
     },
     topColor: {
       control: {
         type: 'select',
       },
-      options: ['main', 'alt1', 'alt2'],
+      options: colorOptions,
     },
     bottomColor: {
       control: {
         type: 'select',
       },
-      options: ['main', 'alt1', 'alt2'],
+      options: colorOptions,
     },
   },
   args: {
@@ -80,10 +123,10 @@ const meta = {
     rightWidth: 'none',
     topWidth: 'sm',
     bottomWidth: 'sm',
-    leftColor: 'main',
-    rightColor: 'main',
-    topColor: 'main',
-    bottomColor: 'main',
+    leftColor: 'frame.primary',
+    rightColor: 'frame.primary',
+    topColor: 'frame.primary',
+    bottomColor: 'frame.primary',
   },
   render: (args) => (
     <Frame {...args}>
@@ -118,10 +161,10 @@ export const Primary: Story = {
     rightWidth: 'none',
     topWidth: 'sm',
     bottomWidth: 'sm',
-    leftColor: 'main',
-    rightColor: 'main',
-    topColor: 'main',
-    bottomColor: 'main',
+    leftColor: 'frame.primary',
+    rightColor: 'frame.primary',
+    topColor: 'frame.primary',
+    bottomColor: 'frame.primary',
   },
 };
 
@@ -131,10 +174,10 @@ export const FullFrame: Story = {
     rightWidth: 'md',
     topWidth: 'sm',
     bottomWidth: 'sm',
-    leftColor: 'main',
-    rightColor: 'alt1',
-    topColor: 'alt2',
-    bottomColor: 'main',
+    leftColor: 'frame.primary',
+    rightColor: 'frame.secondary',
+    topColor: 'frame.accent',
+    bottomColor: 'frame.primary',
   },
 };
 
@@ -144,10 +187,10 @@ export const SidebarOnly: Story = {
     rightWidth: 'none',
     topWidth: 'none',
     bottomWidth: 'none',
-    leftColor: 'main',
-    rightColor: 'main',
-    topColor: 'main',
-    bottomColor: 'main',
+    leftColor: 'frame.sidebar',
+    rightColor: 'frame.sidebar',
+    topColor: 'frame.sidebar',
+    bottomColor: 'frame.sidebar',
   },
 };
 
@@ -157,9 +200,49 @@ export const NoFrame: Story = {
     rightWidth: 'none',
     topWidth: 'none',
     bottomWidth: 'none',
-    leftColor: 'main',
-    rightColor: 'main',
-    topColor: 'main',
-    bottomColor: 'main',
+    leftColor: 'frame.primary',
+    rightColor: 'frame.primary',
+    topColor: 'frame.primary',
+    bottomColor: 'frame.primary',
   },
-}; 
+};
+
+// Showcase semantic colors for different frame purposes
+export const SemanticColors: Story = {
+  args: {
+    leftWidth: 'lg',
+    rightWidth: 'md',
+    topWidth: 'sm',
+    bottomWidth: 'sm',
+    leftColor: 'frame.primary',
+    rightColor: 'frame.secondary',
+    topColor: 'frame.accent',
+    bottomColor: 'frame.divider',
+  },
+};
+
+export const InteractiveFrame: Story = {
+  args: {
+    leftWidth: 'lg',
+    rightWidth: 'md',
+    topWidth: 'sm',
+    bottomWidth: 'sm',
+    leftColor: 'action.primary',
+    rightColor: 'action.secondary',
+    topColor: 'navigation.item',
+    bottomColor: 'navigation.itemActive',
+  },
+};
+
+export const SystemStates: Story = {
+  args: {
+    leftWidth: 'md',
+    rightWidth: 'md',
+    topWidth: 'sm',
+    bottomWidth: 'sm',
+    leftColor: 'status.success',
+    rightColor: 'status.error',
+    topColor: 'status.warning',
+    bottomColor: 'status.info',
+  },
+};

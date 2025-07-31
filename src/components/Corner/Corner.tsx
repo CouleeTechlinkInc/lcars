@@ -1,6 +1,7 @@
 
 import { useTheme } from "../../providers/theme/theme";
 import type { ThemeColors, ThemeFrameSize } from "../../providers/theme/theme.types";
+import { useSemanticColor } from "../../providers/theme/useSemanticColor";
 import './corner.css';
 import { InnerCornerPart } from "./InnerCornerPart";
 import { MainCornerPart } from "./MainCornerPart";
@@ -16,7 +17,10 @@ export const Corner = ({ position , verticalSize, horizontalSize, color }: Corne
     const theme = useTheme();
     const hzMum = theme.frame.size[horizontalSize];
     const vtNum = theme.frame.size[verticalSize];
-    const htmlColor = theme.color[color ?? 'main'];
+    // Use semantic color with backward compatibility
+    const customColor = color ? useSemanticColor(color, 'Corner') : null;
+    const defaultColor = useSemanticColor('frame.corner');
+    const htmlColor = customColor || defaultColor;
     const innerSize = Math.min(vtNum, hzMum);
     const style : React.CSSProperties = {
         position : 'absolute',
